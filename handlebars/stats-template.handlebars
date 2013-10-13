@@ -1,0 +1,15 @@
+<footer id="footer">
+    <span id="todo-count"><strong>{{remaining}}</strong> {{#if remaining}}item{{else}}items{{/if}} left</span>
+    <ul id="filters">
+        <li>
+            <a href="javascript:void(0)" id="all" class="selected">All</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" id="active">Active</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" id="completed">Completed</a>
+        </li>
+    </ul>
+    <button id="clear-completed">Clear completed ({{done}})</button>
+</footer>

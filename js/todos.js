@@ -85,7 +85,9 @@ $(function () {
 		tagName: "li",
 
 		// Cache the template function for a single item.
-		template: _.template($('#item-template').html()),
+		//template: _.template($('#item-template').html()),
+
+        template: Handlebars.templates['item-template'],
 
 		// The DOM events specific to an item.
 		events: {
@@ -108,6 +110,7 @@ $(function () {
 		// Re-render the contents of the todo item.
 		render: function () {
 			$(this.el).html(this.template(this.model.toJSON()));
+            //console.log(this.model.toJSON());
 			this.input = this.$('.edit');
 			return this;
 		},
@@ -148,7 +151,9 @@ $(function () {
 	var ManageTodosView = Parse.View.extend({
 
 		// Our template for the line of statistics at the bottom of the app.
-		statsTemplate: _.template($('#stats-template').html()),
+		//template: _.template($('#stats-template').html()),
+
+        template: Handlebars.templates['stats-template'],
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
@@ -206,7 +211,7 @@ $(function () {
 			var done = this.todos.done().length;
 			var remaining = this.todos.remaining().length;
 
-			this.$('#todo-stats').html(this.statsTemplate({
+			this.$('#todo-stats').html(this.template({
 				total: this.todos.length,
 				done: done,
 				remaining: remaining
