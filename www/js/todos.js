@@ -153,7 +153,8 @@ $(function () {
 		// Our template for the line of statistics at the bottom of the app.
 		//template: _.template($('#stats-template').html()),
 
-        template: Handlebars.templates['stats-template'],
+        statsTemplate: Handlebars.templates['stats-template'],
+        manageTemplate: Handlebars.templates['manage-todos-template'],
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
@@ -170,12 +171,11 @@ $(function () {
 		// collection, when items are added or changed. Kick things off by
 		// loading any preexisting todos that might be saved to Parse.
 		initialize: function () {
-			var self = this;
-
 			_.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
 
 			// Main todo management template
-			this.$el.html(_.template($("#manage-todos-template").html()));
+            console.log(this.manageTemplate);
+			this.$el.html(this.manageTemplate);
 
 			this.input = this.$("#new-todo");
 			this.allCheckbox = this.$("#toggle-all")[0];
@@ -211,7 +211,7 @@ $(function () {
 			var done = this.todos.done().length;
 			var remaining = this.todos.remaining().length;
 
-			this.$('#todo-stats').html(this.template({
+			this.$('#todo-stats').html(this.statsTemplate({
 				total: this.todos.length,
 				done: done,
 				remaining: remaining
